@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Custom Mode Builder - Curator</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary": "#bcc7de",
+                    "surface-container": "#171f33",
+                    "primary": "#a4c9ff",
+                    "on-background": "#dae2fd",
+                    "surface": "#0b1326",
+                    "tertiary-fixed-dim": "#fabd34",
+                    "tertiary": "#fabd34",
+                    "inverse-primary": "#0060ac",
+                    "on-primary-container": "#003a6b",
+                    "tertiary-fixed": "#ffdea4",
+                    "on-secondary-container": "#aeb9d0",
+                    "error": "#ffb4ab",
+                    "outline-variant": "#414751",
+                    "outline": "#8b919d",
+                    "secondary-fixed-dim": "#bcc7de",
+                    "on-error-container": "#ffdad6",
+                    "surface-container-high": "#222a3d",
+                    "primary-container": "#60a5fa",
+                    "on-secondary-fixed": "#111c2d",
+                    "on-primary": "#00315d",
+                    "surface-container-highest": "#2d3449",
+                    "secondary-fixed": "#d8e3fb",
+                    "surface-container-low": "#131b2e",
+                    "surface-tint": "#a4c9ff",
+                    "on-secondary": "#263143",
+                    "on-primary-fixed-variant": "#004883",
+                    "on-tertiary-container": "#4b3500",
+                    "inverse-surface": "#dae2fd",
+                    "on-primary-fixed": "#001c39",
+                    "surface-variant": "#2d3449",
+                    "on-surface": "#dae2fd",
+                    "on-tertiary": "#412d00",
+                    "on-surface-variant": "#c1c7d3",
+                    "on-error": "#690005",
+                    "secondary-container": "#3e495d",
+                    "surface-dim": "#0b1326",
+                    "background": "#0b1326",
+                    "tertiary-container": "#d19900",
+                    "surface-bright": "#31394d",
+                    "primary-fixed-dim": "#a4c9ff",
+                    "on-tertiary-fixed": "#261900",
+                    "primary-fixed": "#d4e3ff",
+                    "on-secondary-fixed-variant": "#3c475a",
+                    "inverse-on-surface": "#283044",
+                    "error-container": "#93000a",
+                    "surface-container-lowest": "#060e20",
+                    "on-tertiary-fixed-variant": "#5d4200"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Plus Jakarta Sans"],
+                    "body": ["Plus Jakarta Sans"],
+                    "label": ["Plus Jakarta Sans"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(45, 52, 73, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #a4c9ff 0%, #60a5fa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .button-gradient {
+            background: linear-gradient(135deg, #a4c9ff 0%, #60a5fa 100%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary/30 min-h-screen pb-32">
+<!-- Top AppBar (from JSON) -->
+<header class="flex justify-between items-center px-6 h-16 w-full fixed top-0 z-50 bg-[#0b1326]">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[#a4c9ff]">menu</span>
+<span class="text-xl font-black text-[#a4c9ff] tracking-tighter">Curator</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-['Plus_Jakarta_Sans'] tracking-tight font-bold text-lg text-[#a4c9ff]">Configure Game</span>
+</div>
+<div class="flex items-center">
+<span class="text-[#a4c9ff] px-3 py-1 bg-[#171f33] rounded-full text-sm font-bold">12 🔥</span>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-24 px-6 max-w-2xl mx-auto space-y-10">
+<!-- Hero Title Section -->
+<section class="space-y-2">
+<div class="flex items-center gap-3">
+<span class="label-md uppercase tracking-widest text-primary/60 font-bold text-xs">Custom Mode</span>
+</div>
+<h1 class="text-4xl font-extrabold tracking-tight">Create your own <span class="text-gradient">Challenge</span></h1>
+<p class="text-on-surface-variant text-sm max-w-md">Define the rules of your curator session. Mix custom vocabulary with architectural precision.</p>
+</section>
+<!-- Builder Form Layout -->
+<div class="space-y-8">
+<!-- Section 1: Vocabulary -->
+<div class="space-y-4">
+<div class="flex justify-between items-end">
+<label class="text-xs uppercase tracking-widest font-bold text-outline">01. Vocabulary Root</label>
+<span class="text-[10px] text-tertiary">Optional</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Theme Selector Card -->
+<button class="flex flex-col items-start p-5 rounded-lg bg-surface-container-low hover:bg-surface-container transition-all group border border-transparent hover:border-primary/10">
+<span class="material-symbols-outlined text-primary mb-3">auto_awesome</span>
+<span class="font-bold text-sm">Pick a Theme</span>
+<span class="text-xs text-on-surface-variant text-left mt-1">Nature, Tech, or Art deco lists.</span>
+</button>
+<!-- Custom Input Card -->
+<div class="p-5 rounded-lg bg-surface-container-highest flex flex-col gap-3">
+<span class="material-symbols-outlined text-secondary">edit_note</span>
+<input class="bg-transparent border-none p-0 focus:ring-0 placeholder:text-outline text-sm w-full font-medium" placeholder="Add custom words..." type="text"/>
+<div class="h-px bg-outline-variant/30 w-full"></div>
+<span class="text-[10px] text-outline italic">Separate words with commas</span>
+</div>
+</div>
+</div>
+<!-- Section 2: Mechanics Grid -->
+<div class="grid grid-cols-1 gap-8">
+<!-- Word Length (Interactive Selectors) -->
+<div class="space-y-4">
+<label class="text-xs uppercase tracking-widest font-bold text-outline">02. Word Architecture</label>
+<div class="flex flex-wrap gap-3">
+<!-- Selectors following "Tactile Ethereal" geometry -->
+<button class="w-12 h-12 flex items-center justify-center rounded-md bg-surface-container-low text-on-surface-variant hover:bg-surface-container-highest transition-colors font-bold border border-outline-variant/10">4</button>
+<button class="w-12 h-12 flex items-center justify-center rounded-md bg-surface-container-highest text-primary border border-primary/40 font-bold shadow-[0_0_20px_rgba(164,201,255,0.15)]">5</button>
+<button class="w-12 h-12 flex items-center justify-center rounded-md bg-surface-container-low text-on-surface-variant hover:bg-surface-container-highest transition-colors font-bold border border-outline-variant/10">6</button>
+<button class="w-12 h-12 flex items-center justify-center rounded-md bg-surface-container-low text-on-surface-variant hover:bg-surface-container-highest transition-colors font-bold border border-outline-variant/10">7</button>
+<button class="w-12 h-12 flex items-center justify-center rounded-md bg-surface-container-low text-on-surface-variant hover:bg-surface-container-highest transition-colors font-bold border border-outline-variant/10">8</button>
+</div>
+</div>
+<!-- Attempts Selection -->
+<div class="space-y-4">
+<label class="text-xs uppercase tracking-widest font-bold text-outline">03. Persistence Level</label>
+<div class="p-6 rounded-lg bg-surface-container-low flex items-center justify-between group">
+<div class="flex flex-col">
+<span class="text-sm font-bold">Attempts</span>
+<span class="text-xs text-on-surface-variant">The limit of your curation</span>
+</div>
+<div class="flex items-center gap-6">
+<button class="w-8 h-8 rounded-full flex items-center justify-center hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-sm">remove</span>
+</button>
+<span class="text-2xl font-black text-primary tracking-tighter">06</span>
+<button class="w-8 h-8 rounded-full flex items-center justify-center bg-surface-container-high hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-sm">add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Asymmetric Aesthetic Detail -->
+<div class="relative overflow-hidden p-8 rounded-lg bg-surface-container-low/50 border border-outline-variant/5">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 blur-[60px] rounded-full -mr-16 -mt-16"></div>
+<div class="relative z-10 flex gap-6 items-center">
+<div class="flex-shrink-0 w-16 h-16 rounded-md bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary text-3xl" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+</div>
+<div>
+<h4 class="font-bold text-sm">Curator's Preview</h4>
+<p class="text-xs text-on-surface-variant leading-relaxed mt-1">A 5-letter word game with 6 attempts. Using custom architecture vocabulary.</p>
+</div>
+</div>
+</div>
+<!-- Primary Action -->
+<div class="pt-6">
+<button class="button-gradient w-full py-5 rounded-full text-on-primary font-extrabold text-lg tracking-tight shadow-xl shadow-primary/10 hover:scale-[1.02] active:scale-95 transition-all duration-200 flex items-center justify-center gap-3">
+                    Save Preset
+                    <span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation (from JSON) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-8 pb-8 pt-4 bg-[#0b1326]/80 backdrop-blur-xl shadow-[0_-20px_40px_-5px_rgba(255,255,255,0.06)] rounded-t-3xl">
+<div class="flex items-center justify-center text-[#2d3449] p-3 hover:text-[#a4c9ff] transition-all active:scale-90 duration-150">
+<span class="material-symbols-outlined">grid_view</span>
+</div>
+<div class="flex items-center justify-center text-[#2d3449] p-3 hover:text-[#a4c9ff] transition-all active:scale-90 duration-150">
+<span class="material-symbols-outlined">leaderboard</span>
+</div>
+<!-- Active Tab: Settings/Config Mode -->
+<div class="flex items-center justify-center bg-[#171f33] text-[#a4c9ff] rounded-full p-3 active:scale-90 duration-150">
+<span class="material-symbols-outlined">settings</span>
+</div>
+<div class="flex items-center justify-center text-[#2d3449] p-3 hover:text-[#a4c9ff] transition-all active:scale-90 duration-150">
+<span class="material-symbols-outlined">person</span>
+</div>
+</nav>
+<!-- Visual Texture Element (Background Glow) -->
+<div class="fixed top-1/4 -right-20 w-80 h-80 bg-primary/5 rounded-full blur-[100px] pointer-events-none z-0"></div>
+<div class="fixed bottom-1/4 -left-20 w-64 h-64 bg-tertiary/5 rounded-full blur-[80px] pointer-events-none z-0"></div>
+</body></html>

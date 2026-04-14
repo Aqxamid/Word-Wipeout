@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Curator | Player Stats</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f7f9fb;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed-variant": "#004395",
+                        "on-secondary-fixed": "#191c1f",
+                        "outline-variant": "#c2c6d6",
+                        "on-tertiary-fixed-variant": "#723600",
+                        "on-surface-variant": "#424754",
+                        "surface-container-highest": "#e0e3e5",
+                        "secondary-container": "#dee0e4",
+                        "on-primary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "tertiary": "#924700",
+                        "surface-variant": "#e0e3e5",
+                        "background": "#f7f9fb",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-low": "#f2f4f6",
+                        "surface-container": "#eceef0",
+                        "on-tertiary-fixed": "#311400",
+                        "on-surface": "#191c1e",
+                        "surface-container-high": "#e6e8ea",
+                        "primary": "#0058be",
+                        "error-container": "#ffdad6",
+                        "secondary": "#5c5f62",
+                        "on-secondary-container": "#606366",
+                        "primary-container": "#2170e4",
+                        "on-primary-container": "#fefcff",
+                        "outline": "#727785",
+                        "surface-bright": "#f7f9fb",
+                        "tertiary-fixed": "#ffdcc6",
+                        "tertiary-container": "#b75b00",
+                        "on-secondary-fixed-variant": "#44474a",
+                        "on-secondary": "#ffffff",
+                        "inverse-primary": "#adc6ff",
+                        "primary-fixed-dim": "#adc6ff",
+                        "primary-fixed": "#d8e2ff",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed": "#001a42",
+                        "on-background": "#191c1e",
+                        "secondary-fixed": "#e0e2e6",
+                        "inverse-on-surface": "#eff1f3",
+                        "surface": "#f7f9fb",
+                        "on-tertiary-container": "#fffbff",
+                        "inverse-surface": "#2d3133",
+                        "secondary-fixed-dim": "#c4c7ca",
+                        "surface-tint": "#005ac2",
+                        "surface-dim": "#d8dadc",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed-dim": "#ffb786"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface selection:bg-primary-fixed">
+<!-- TopAppBar -->
+<header class="bg-white/80 backdrop-blur-md dark:bg-slate-900/80 fixed top-0 w-full z-50">
+<div class="flex items-center justify-between px-6 h-16 w-full max-w-7xl mx-auto">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-slate-500 hover:opacity-80 transition-opacity cursor-pointer">menu</span>
+<span class="text-xl font-extrabold tracking-tighter text-slate-900 dark:text-white font-['Plus_Jakarta_Sans']">Curator</span>
+</div>
+<div class="hidden md:flex gap-8">
+<span class="text-slate-500 hover:opacity-80 transition-opacity font-bold cursor-pointer">Home</span>
+<span class="text-slate-500 hover:opacity-80 transition-opacity font-bold cursor-pointer">Leaderboard</span>
+<span class="text-slate-500 hover:opacity-80 transition-opacity font-bold cursor-pointer">Settings</span>
+<span class="text-blue-600 font-bold hover:opacity-80 transition-opacity cursor-pointer">Profile</span>
+</div>
+<div class="w-10 h-10 rounded-full bg-surface-container-high overflow-hidden border-2 border-white shadow-sm">
+<img class="w-full h-full object-cover" data-alt="close-up portrait of a professional creative with a soft focused studio background and warm natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7O6J0obXg6MdSQdRZ5Tmxe-Bh0T448YBWcNtSaqKJtDpwlA05y6HI9KwuQwL8xxqWTqU_-uKZs0ZgfX67mAuBjHJAVNQRi7NWsNeGwgft0UEX5X6vPfZGz8Uz_YmsC7SmdODKhYBbaHSHhfNNUuDbLKfScsF7m_BXPE35v-ljmXP5Z3csIj0O4zu7WildnH5knA6kmZyG3eZ2wxOVzVV672YZD0fYzo_AvUWf3IuNz3I8IRQ3yB4G3l0xyTBcj3hJs3taqHrpaD8"/>
+</div>
+</div>
+</header>
+<main class="pt-24 pb-32 px-6 max-w-7xl mx-auto">
+<!-- Hero Stats Section -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-6 mb-12">
+<!-- Profile Card -->
+<div class="md:col-span-4 bg-surface-container-lowest rounded-xl p-8 flex flex-col items-center text-center shadow-[0_12px_32px_rgba(25,28,30,0.04)]">
+<div class="relative mb-6">
+<div class="w-24 h-24 rounded-full p-1 bg-gradient-to-tr from-primary to-primary-container">
+<div class="w-full h-full rounded-full bg-white p-1">
+<img class="w-full h-full rounded-full object-cover" data-alt="sophisticated portrait of a player in a circular frame with premium editorial lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRnNp4MJwrWsSateE-Ox6t8lH9TfVq3vyLrBzUjBZe_b6lwqcXW5dE5QGCJ_in081vyZfQ-EizosnCZvmGWUJiZSQgoGX_6gvPDnt5sa2UZHFylwJcurY-Ov-9z0XzfyzMFIX7z0hC-aa01TKOX4kl7gHX-RPcg5fKAd2GqNOMi-eZHV0pin0W_-4Rbs4OzLfWldUKbJGA-5w64xJyefMwmP3sps6M2_LDsCxi6_STJeFMtqGVSNpQUGk-Y2uaByBuIRCXtqwPV8o"/>
+</div>
+</div>
+<div class="absolute -bottom-2 -right-2 bg-primary text-white p-2 rounded-full shadow-lg">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+</div>
+<h1 class="text-2xl font-bold text-on-surface mb-1">Alex Thorne</h1>
+<p class="text-on-surface-variant font-medium mb-6">Master Wordsmith</p>
+<div class="flex gap-4 w-full">
+<button class="flex-1 bg-gradient-to-br from-primary to-primary-container text-white rounded-full py-3 font-bold hover:shadow-lg transition-all active:scale-95">Edit Profile</button>
+<button class="w-12 h-12 flex items-center justify-center bg-surface-container-low rounded-full text-on-surface-variant hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined">share</span>
+</button>
+</div>
+</div>
+<!-- Key Metrics Bento -->
+<div class="md:col-span-8 grid grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Games Played -->
+<div class="bg-surface-container-lowest rounded-xl p-6 shadow-[0_12px_32px_rgba(25,28,30,0.04)] flex flex-col justify-between">
+<span class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Games Played</span>
+<div>
+<div class="text-5xl font-extrabold text-on-surface leading-tight">342</div>
+<p class="text-sm text-primary font-semibold mt-1">+12 this week</p>
+</div>
+</div>
+<!-- Win Rate -->
+<div class="bg-surface-container-lowest rounded-xl p-6 shadow-[0_12px_32px_rgba(25,28,30,0.04)] flex flex-col justify-between">
+<span class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Win Rate</span>
+<div>
+<div class="text-5xl font-extrabold text-on-surface leading-tight">94%</div>
+<div class="w-full bg-surface-container-low h-1.5 rounded-full mt-4 overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 94%"></div>
+</div>
+</div>
+</div>
+<!-- Current Streak -->
+<div class="bg-primary text-white rounded-xl p-6 shadow-xl shadow-primary/10 flex flex-col justify-between relative overflow-hidden">
+<div class="absolute -right-4 -top-4 opacity-10">
+<span class="material-symbols-outlined text-9xl" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+</div>
+<span class="text-xs font-bold uppercase tracking-widest text-primary-fixed opacity-80">Current Streak</span>
+<div>
+<div class="text-5xl font-extrabold leading-tight">18</div>
+<p class="text-sm font-semibold mt-1">Days Strong</p>
+</div>
+</div>
+<!-- Badge Progress -->
+<div class="col-span-2 lg:col-span-3 bg-surface-container-lowest rounded-xl p-8 shadow-[0_12px_32px_rgba(25,28,30,0.04)] relative overflow-hidden">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-6 relative z-10">
+<div class="flex items-center gap-6">
+<div class="w-20 h-20 rounded-full bg-tertiary-fixed flex items-center justify-center text-tertiary shadow-inner">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+</div>
+<div>
+<h3 class="text-xl font-bold text-on-surface">Grand Curator Badge</h3>
+<p class="text-on-surface-variant">Unlock by reaching 500 wins. You're almost there!</p>
+</div>
+</div>
+<div class="flex-1 max-w-md w-full">
+<div class="flex justify-between mb-2">
+<span class="text-sm font-bold text-on-surface">321 / 500 Wins</span>
+<span class="text-sm font-bold text-primary">64%</span>
+</div>
+<div class="w-full bg-surface-container h-3 rounded-full overflow-hidden">
+<div class="bg-gradient-to-r from-primary to-primary-container h-full rounded-full shadow-[0_0_8px_rgba(0,88,190,0.4)]" style="width: 64%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Charts Section -->
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<!-- Streak History -->
+<div class="bg-surface-container-lowest rounded-xl p-8 shadow-[0_12px_32px_rgba(25,28,30,0.04)]">
+<div class="flex items-center justify-between mb-8">
+<h3 class="text-lg font-bold text-on-surface">Streak History</h3>
+<div class="flex items-center gap-2 text-xs font-bold text-on-surface-variant bg-surface-container-low px-3 py-1 rounded-full">
+                        LAST 14 DAYS
+                    </div>
+</div>
+<div class="flex items-end justify-between h-48 gap-2">
+<div class="flex-1 flex flex-col items-center gap-2">
+<div class="w-full bg-surface-container-low rounded-t-full h-[40%] transition-all hover:bg-primary/20"></div>
+<span class="text-[10px] font-bold text-on-surface-variant">M</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2">
+<div class="w-full bg-surface-container-low rounded-t-full h-[60%] transition-all hover:bg-primary/20"></div>
+<span class="text-[10px] font-bold text-on-surface-variant">T</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2">
+<div class="w-full bg-primary rounded-t-full h-[100%] transition-all"></div>
+<span class="text-[10px] font-bold text-primary">W</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2">
+<div class="w-full bg-surface-container-low rounded-t-full h-[30%] transition-all hover:bg-primary/20"></div>
+<span class="text-[10px] font-bold text-on-surface-variant">T</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2">
+<div class="w-full bg-surface-container-low rounded-t-full h-[80%] transition-all hover:bg-primary/20"></div>
+<span class="text-[10px] font-bold text-on-surface-variant">F</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2">
+<div class="w-full bg-surface-container-low rounded-t-full h-[50%] transition-all hover:bg-primary/20"></div>
+<span class="text-[10px] font-bold text-on-surface-variant">S</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2">
+<div class="w-full bg-surface-container-low rounded-t-full h-[70%] transition-all hover:bg-primary/20"></div>
+<span class="text-[10px] font-bold text-on-surface-variant">S</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2">
+<div class="w-full bg-primary rounded-t-full h-[90%] transition-all"></div>
+<span class="text-[10px] font-bold text-primary">M</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2">
+<div class="w-full bg-surface-container-low rounded-t-full h-[45%] transition-all hover:bg-primary/20"></div>
+<span class="text-[10px] font-bold text-on-surface-variant">T</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2">
+<div class="w-full bg-surface-container-low rounded-t-full h-[85%] transition-all hover:bg-primary/20"></div>
+<span class="text-[10px] font-bold text-on-surface-variant">W</span>
+</div>
+</div>
+</div>
+<!-- Guess Distribution -->
+<div class="bg-surface-container-lowest rounded-xl p-8 shadow-[0_12px_32px_rgba(25,28,30,0.04)]">
+<div class="flex items-center justify-between mb-8">
+<h3 class="text-lg font-bold text-on-surface">Guess Distribution</h3>
+<div class="flex items-center gap-2 text-xs font-bold text-on-surface-variant bg-surface-container-low px-3 py-1 rounded-full">
+                        WINNING TURN
+                    </div>
+</div>
+<div class="space-y-4">
+<div class="flex items-center gap-4">
+<span class="text-sm font-bold text-on-surface w-4">1</span>
+<div class="flex-1 h-8 bg-surface-container-low rounded-full overflow-hidden flex items-center">
+<div class="bg-surface-container h-full flex items-center px-4 transition-all" style="width: 15%">
+<span class="text-xs font-bold text-on-surface-variant">12</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="text-sm font-bold text-on-surface w-4">2</span>
+<div class="flex-1 h-8 bg-surface-container-low rounded-full overflow-hidden flex items-center">
+<div class="bg-surface-container h-full flex items-center px-4 transition-all" style="width: 35%">
+<span class="text-xs font-bold text-on-surface-variant">45</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="text-sm font-bold text-on-surface w-4">3</span>
+<div class="flex-1 h-8 bg-surface-container-low rounded-full overflow-hidden flex items-center">
+<div class="bg-primary h-full flex items-center px-4 transition-all" style="width: 85%">
+<span class="text-xs font-bold text-white">142</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="text-sm font-bold text-on-surface w-4">4</span>
+<div class="flex-1 h-8 bg-surface-container-low rounded-full overflow-hidden flex items-center">
+<div class="bg-surface-container h-full flex items-center px-4 transition-all" style="width: 65%">
+<span class="text-xs font-bold text-on-surface-variant">98</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="text-sm font-bold text-on-surface w-4">5</span>
+<div class="flex-1 h-8 bg-surface-container-low rounded-full overflow-hidden flex items-center">
+<div class="bg-surface-container h-full flex items-center px-4 transition-all" style="width: 25%">
+<span class="text-xs font-bold text-on-surface-variant">32</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] max-w-md rounded-full bg-white/70 backdrop-blur-xl dark:bg-slate-900/70 shadow-[0_12px_32px_rgba(25,28,30,0.04)] z-50 flex justify-around items-center px-4 py-2">
+<a class="flex items-center justify-center text-slate-400 p-4 hover:text-blue-500 transition-colors active:scale-90 duration-300 ease-out" href="#">
+<span class="material-symbols-outlined">home</span>
+</a>
+<a class="flex items-center justify-center text-slate-400 p-4 hover:text-blue-500 transition-colors active:scale-90 duration-300 ease-out" href="#">
+<span class="material-symbols-outlined">leaderboard</span>
+</a>
+<a class="flex items-center justify-center text-slate-400 p-4 hover:text-blue-500 transition-colors active:scale-90 duration-300 ease-out" href="#">
+<span class="material-symbols-outlined">settings</span>
+</a>
+<a class="flex items-center justify-center bg-blue-600 text-white rounded-full p-4 scale-110 shadow-lg shadow-blue-500/20 active:scale-90 duration-300 ease-out" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+</a>
+</nav>
+</body></html>

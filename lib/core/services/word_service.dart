@@ -1,0 +1,244 @@
+// lib/core/services/word_service.dart
+import 'dart:math';
+import '../models/word_model.dart';
+import 'storage_service.dart';
+
+class WordService {
+  final StorageService _storage;
+  final Random _random = Random();
+
+  WordService(this._storage);
+
+  static const List<String> _rage0 = ['APPLE','BERRY','CHAIR','DANCE','EAGLE','FLAME','GRACE','HONEY','IMAGE','JEWEL','LEMON','MAPLE','NOVEL','OCEAN','PIANO','QUEEN','RIVER','STONE','TIGER','WATER','AWAKE','BASIC','BEACH','BEAST','BEGIN'];
+  static const List<String> _rage1 = ['BRAVE','CHESS','VISOR','YACHT','ZEBRA','ANGEL','BLOOM','CHARM','DRIFT','FROST','GLASS','HAVEN','IRONY','MAGIC','NERVE','PLUMB','QUILL','REALM','SCOUT','TRICK','UNIFY','VAULT','WITCH','PIXEL'];
+  static const List<String> _rage2 = ['GHOST','JUDGE','MARCH','NIGHT','VALOR','WEIGH','BRICK','BRUSH','CABLE','CANDY','CATCH','CAUSE','CHAIN','CLEAN','CLEAR','CLIMB','CLOCK','CLOUD','COAST','COLOR','COUNT','CRAFT','CRASH','CREAM'];
+  static const List<String> _rage3 = ['OZONE','KUDOS','LUNAR','GUARD','SWORD','BLAZE','CROWN','FLARE','STORM','PRISM','GLIDE','TROVE','SPARK','CRISP','DWARF','FABLE','HASTE','INPUT','KNEEL','LIGHT','ORBIT','PERCH','QUOTE','RAISE','SHELF'];
+  static const List<String> _rage4 = ['AORTA','MUMMY','KAYAK','CIVIL','QUEUE','VIVID','PUPIL','EERIE','FLUFF','ONION','DODGY','JAZZY','MAXIM','RADAR','ROTOR','STATS','TAFFY','USUAL','WIDOW','ZESTY','ABYSS','BOSOM','CACAO','ENEMA','IGLOO'];
+
+  List<WordModel> getRagePool(int difficulty) {
+    List<String> raw;
+    switch(difficulty) {
+      case 0: raw = _rage0; break;
+      case 1: raw = _rage1; break;
+      case 2: raw = _rage2; break;
+      case 3: raw = _rage3; break;
+      case 4: raw = _rage4; break;
+      default: raw = _rage2;
+    }
+    return raw.map((w) => WordModel.fromString(w)).toList();
+  }
+
+  static const List<String> _defaultWords = [
+  'APPLE','BRAVE','CHESS','DANCE','EAGLE','FLAME','GRACE','HONEY','IMAGE','JEWEL',
+  'KNIFE','LEMON','MAPLE','NOVEL','OCEAN','PIANO','QUEEN','RIVER','STONE','TIGER',
+  'ULTRA','VISOR','WATER','XENON','YACHT','ZEBRA','ANGEL','BLOOM','CHARM','DRIFT',
+  'EMBER','FROST','GLASS','HAVEN','IRONY','JOUST','KUDOS','LUNAR','MAGIC','NERVE',
+  'OZONE','PLUMB','QUILL','REALM','SCOUT','TRICK','UNIFY','VAULT','WITCH','PIXEL',
+  'GUARD','SWORD','BLAZE','CROWN','FLARE','STORM','PRISM','GLIDE','TROVE','SPARK',
+  'CRISP','DWARF','FABLE','GHOST','HASTE','INPUT','JUDGE','KNEEL','LIGHT','MARCH',
+  'NIGHT','ORBIT','PERCH','QUOTE','RAISE','SHELF','THICK','UNDER','VALOR','WEIGH',
+
+  // more 5-letter
+  'ABIDE','ADORE','AGILE','ALERT','ALIVE','AMBER','AMONG','ANGLE','ANVIL','APRON',
+  'ARROW','ASIDE','AUDIO','AWAKE','BASIC','BEACH','BEAST','BEGIN','BLEND','BLOCK',
+  'BRAIN','BRICK','BRUSH','CABLE','CANDY','CARRY','CATCH','CAUSE','CHAIN','CHAIR',
+  'CLEAN','CLEAR','CLIMB','CLOCK','CLOUD','COAST','COLOR','COUNT','CRAFT','CRASH',
+  'CREAM','CROSS','CYCLE','DAILY','DELAY','DEPTH','DOUBT','DOZEN','DREAM','DRIVE',
+  'EARTH','ELDER','ENJOY','ENTER','ERROR','EVENT','EXACT','EXIST','EXTRA','FAITH',
+  'FALSE','FIELD','FINAL','FIRST','FOCUS','FORCE','FRAME','FRESH','FRONT','FRUIT',
+  'GIANT','GLORY','GRAND','GRANT','GREEN','GROUP','GUESS','HEART','HEAVY','HUMAN',
+  'IDEAL','INDEX','INNER','ISSUE','JOINT','LARGE','LASER','LAYER','LEARN','LEVEL',
+  'LIMIT','LOCAL','LOGIC','LUCKY','MAJOR','MAKER','METAL','MODEL','MONEY','MONTH',
+  'MOTOR','MOUSE','MUSIC','NAKED','NARROW','NEEDS','NOISE','NORTH','OFFER','ORDER',
+  'OTHER','OUTER','OWNER','PANEL','PAPER','PARTY','PEACE','PHASE','PHONE','PHOTO',
+  'PIECE','PILOT','PLANE','PLANT','PLATE','POINT','POWER','PRESS','PRICE','PRIDE',
+  'PRIME','PRINT','PRIZE','PROOF','PROUD','PULSE','RANGE','RAPID','REACH','REACT',
+  'READY','REFER','RELAX','REPLY','RESET','RIGHT','ROUND','ROUTE','ROYAL','RURAL',
+  'SCALE','SCENE','SCOPE','SCORE','SENSE','SERVE','SHARE','SHIFT','SHINE','SHOCK',
+  'SHORT','SKILL','SMILE','SOLID','SOLVE','SOUND','SOUTH','SPACE','SPEED','SPEND',
+  'SPICE','SPITE','SPLIT','SPORT','STAFF','STAGE','START','STATE','STEEL','STICK',
+  'STILL','STOCK','STORE','STYLE','SUGAR','TABLE','TAKEN','TASTE','TEACH','THEME',
+  'THERE','THING','THINK','THROW','TITLE','TODAY','TOPIC','TOTAL','TOUCH','TRACK',
+  'TRADE','TRAIN','TREND','TRIAL','TRUST','TRUTH','TWICE','UNION','UNITY','VALUE',
+  'VIDEO','VISIT','VOICE','WASTE','WATCH','WHEEL','WHERE','WHILE','WHITE','WHOLE',
+  'WORLD','WORTH','WRITE','WRONG','YIELD','YOUNG','YOURS',
+  'ABOVE','ABUSE','ACTOR','ACUTE','ADMIT','ADOPT','ADULT','AFTER','AGAIN','AGENT',
+  'AGREE','AHEAD','ALARM','ALBUM','ALONE','ALONG','ALTER','AMONG','ANGER','APART',
+  'APPLY','ARENA','ARGUE','ARISE','ARRAY','ASSET','AUDIO','AUDIT','AVOID','AWARD',
+  'AWARE','BADLY','BAKER','BASES','BASIS','BEGAN','BEGIN','BEGUN','BEING','BELOW',
+  'BENCH','BILLY','BIRTH','BLACK','BLAME','BLIND','BLOOD','BOARD','BOOST','BOOTH',
+  'BOUND','BRAIN','BRAND','BREAD','BREAK','BREED','BRIEF','BRING','BROAD','BROKE',
+  'BROWN','BUILD','BUILT','BUYER','CABLE','CALIF','CARRY','CATCH','CAUSE','CHAIN',
+  'CHAIR','CHART','CHASE','CHEAP','CHECK','CHEST','CHIEF','CHILD','CHINA','CHOSE',
+  'CIVIL','CLAIM','CLASS','CLEAN','CLEAR','CLICK','CLOCK','CLOSE','COACH','COAST',
+  'COULD','COUNT','COURT','COVER','CRAFT','CRASH','CREAM','CRIME','CROSS','CROWD',
+  'CROWN','CURVE','CYCLE',
+
+  // 6-letter words (expanded)
+  'BRIDGE','CASTLE','DANCER','EMPIRE','FOREST','GROWTH','HUNTER','ISLAND','JUNGLE',
+  'KNIGHT','LAUNCH','MIRROR','NATURE','ORIGIN','PLANET','QUARTZ','ROCKET','SPIRAL',
+  'THRONE','UNFOLD',
+
+  'ABSENT','ACCEPT','ACCESS','ACROSS','ACTION','ACTIVE','ACTUAL','ADVICE','ADVISE',
+  'AFFORD','AFRAID','AGREED','ALMOST','ALWAYS','AMOUNT','ANIMAL','ANSWER','ANYONE',
+  'APPEAL','APPEAR','AROUND','ARRIVE','ARTIST','ASPECT','ASSESS','ASSUME','ATTACK',
+  'AUTHOR','BACKED','BARELY','BATTLE','BEAUTY','BECOME','BEFORE','BEHALF','BEHIND',
+  'BELIEF','BELONG','BETTER','BEYOND','BINARY','BORDER','BOTTLE','BOTTOM','BRANCH',
+  'BREATH','BRIGHT','BROKEN','BUDGET','BURDEN','BUTTON','CAMERA','CANCER','CANNOT',
+  'CARBON','CAREER','CAREFUL','CARRY','CENTER','CENTRE','CHANCE','CHANGE','CHARGE',
+  'CHOICE','CHOOSE','CHOSEN','CHURCH','CIRCLE','CLIENT','CLOSED','CLOSER','COFFEE',
+  'COLUMN','COMBAT','COMING','COMMON','COMPANY','COMPARE','COMPETE','COMPLEX',
+  'CONCEPT','CONCERN','CONDUCT','CONFIRM','CONNECT','CONSENT','CONSIST','CONTACT',
+  'CONTAIN','CONTENT','CONTEXT','CONTROL','COOKED','CORNER','CORRECT','COSTLY',
+  'COUNTY','COUPLE','COURSE','COVERS','CREATE','CREDIT','CRISIS','CUSTOM','DAMAGE',
+  'DANGER','DEALER','DEBATE','DECADE','DECIDE','DECLARE','DECLINE','DEFAULT',
+  'DEFINE','DEGREE','DEMAND','DEPEND','DEPUTY','DESERT','DESIGN','DESIRE','DETAIL',
+  'DETECT','DEVICE','DIFFER','DINNER','DIRECT','DOCTOR','DOUBLE','DRIVER','DURING',
+  'EASILY','EATING','EDITOR','EFFECT','EFFORT','EITHER','ENERGY','ENGAGE','ENGINE',
+  'ENOUGH','ENSURE','ENTIRE','ENTITY','EQUITY','ESCAPE','ESTATE','ETHICS','EXAMIN',
+  'EXCEPT','EXCESS','EXPAND','EXPECT','EXPERT','EXPORT','EXTEND','EXTENT','FABRIC',
+  'FACTOR','FAILED','FAIRLY','FALLEN','FAMILY','FAMOUS','FATHER','FELLOW','FEMALE',
+  'FIGURE','FILLED','FILTER','FINAL','FINDING','FINGER','FINISH','FISCAL','FLIGHT',
+  'FLOWER','FOLLOW','FORCED','FORMAL','FORMAT','FORMER','FOUGHT','FRIEND','FUTURE',
+  'ABROAD','ABSORB','ACCEPT','ACCESS','ACCORD','ACCUSE','ACHIEVE','ACQUIRE','ACROSS',
+  'ACTING','ACTION','ACTIVE','ACTUAL','ADJUST','ADMIRE','ADVISE','AFFAIR','AFFORD',
+  'AFRAID','AGENCY','AGENDA','ALMOST','ALWAYS','AMOUNT','ANALOG','ANALYT','ANIMAL',
+  'ANNUAL','ANSWER','ANYWAY','APPEAL','APPEAR','AROUND','ARRIVE','ARTIST','ASPECT',
+  'ASSESS','ASSIST','ASSUME','ASSURE','ATTACK','ATTEND','AUTHOR','BACKED','BARELY',
+  'BATTLE','BEAUTY','BECOME','BEFORE','BEHALF','BEHAVE','BEHIND','BELIEF','BELONG',
+  'BETTER','BEYOND','BINARY','BORDER','BOTTLE','BOTTOM','BRANCH','BREATH','BRIDGE',
+  'BRIGHT','BROKEN','BUDGET','BURDEN','BUTTON','CAMERA','CANCER','CANNOT','CARBON',
+  'CAREER','CAREFUL','CENTER','CENTRE','CHANCE','CHANGE','CHARGE','CHOICE','CHOOSE',
+  'CHOSEN','CIRCLE','CLIENT','CLOSED','CLOSER','COFFEE','COLUMN','COMBAT','COMING',
+  'COMMON','COMPANY','COMPARE','COMPETE','COMPLEX','CONCEPT','CONCERN','CONDUCT',
+  'CONFIRM','CONNECT','CONSENT','CONSIST','CONTACT','CONTAIN','CONTENT','CONTEXT',
+  'CONTROL','CORNER','CORRECT','COSTLY','COUNTY','COUPLE','COURSE','CREATE','CREDIT',
+  'CRISIS','CUSTOM','DAMAGE','DANGER','DEALER','DEBATE','DECADE','DECIDE','DECLARE',
+  'DECLINE','DEFINE','DEGREE','DEMAND','DEPEND','DEPUTY','DESERT','DESIGN','DESIRE',
+  'DETAIL','DETECT','DEVICE','DIFFER','DINNER','DIRECT','DOCTOR','DOUBLE','DRIVER',
+  'DURING',
+
+  // 7-letter words
+  'CAPTAIN','DESTINY','ECLIPSE','FANTASY','GRAVITY','HORIZON','IMAGINE','JOURNEY',
+  'KINGDOM','LANTERN','MYSTERY','NETWORK','OCTOBER','PATTERN','QUANTUM',
+
+  'ACCOUNT','ACHIEVE','ACQUIRE','ADDRESS','ADVANCE','ADVERSE','ADVISOR','AGAINST',
+  'AIRLINE','ALREADY','ANALYZE','ANCIENT','ANOTHER','ANXIETY','ANYBODY','APPLIED',
+  'ARRANGE','ARRIVAL','ARTICLE','ASSAULT','ASSIST','ASSUME','ASSURE','ATTEMPT',
+  'ATTRACT','AUCTION','AVERAGE','BALANCE','BANKING','BARRIER','BATTERY','BEARING',
+  'BECAUSE','BEDROOM','BELIEVE','BENEFIT','BETWEEN','BILLION','BINDING','BROTHER',
+  'BROUGHT','BURNING','CABINET','CALIBER','CALLING','CAPABLE','CAPITAL','CAPTURE',
+  'ACCOUNT','ACCUSED','ACHIEVE','ACQUIRE','ADDRESS','ADVANCE','ADVERSE','ADVISOR',
+  'AGAINST','AIRLINE','ALREADY','ANALYZE','ANCIENT','ANOTHER','ANXIETY','ANYBODY',
+  'APPLIED','ARRANGE','ARRIVAL','ARTICLE','ASSAULT','ASSIST','ASSUMED','ASSURED',
+  'ATTEMPT','ATTRACT','AUCTION','AVERAGE','BALANCE','BANKING','BARRIER','BATTERY',
+  'BEARING','BECAUSE','BEDROOM','BELIEVE','BENEFIT','BETWEEN','BILLION','BINDING',
+  'BROTHER','BROUGHT','BURNING','CABINET','CALIBER','CALLING','CAPABLE','CAPITAL',
+  'CAPTURE','CAREFUL','CARRIER','CAUTION','CEILING','CENTRAL','CENTURY','CERTAIN',
+  'CHAMBER','CHANNEL','CHAPTER','CHARITY','CHARTER','CHECKED','CHICKEN','CHOICES',
+  'CHOSING','CIRCUIT','CLARITY','CLASSIC','CLIMATE','CLOSING','CLOTHES','COLLECT',
+  'COLLEGE','COMBINE','COMFORT','COMMAND','COMMENT','COMPACT','COMPANY','COMPARE',
+
+  // 8-letter words
+  'ABSOLUTE','BIRTHDAY','CARNIVAL','DIAMONDS','ELEPHANT','FIRESTORM','GLORIOUS',
+  'HARMONIC',
+
+  'ACCURACY','ACTIVITY','ACTUALLY','ADDITION','ADEQUATE','ADJUSTED','ADVANCED',
+  'ADVISORY','AFFECTED','AIRCRAFT','ALLIANCE','ALTHOUGH','ANALYSIS','ANNOUNCE',
+  'ANYTHING','APPARENT','APPROACH','APPROVED','ARGUMENT','ASSEMBLY','ASSIGNED',
+  'ASSISTED','ATHLETIC','ATTITUDE','ATTRIBUT','AUDIENCE','AUTHORITY','AUTOMATE',
+  'AVAILABLE','BASEBALL','BEAUTIFUL','BECOMING','BEHAVIOR','BUILDING','BUSINESS',
+  'CALCULATE','CAMPAIGN','CAPACITY','CATEGORY','CELEBRATE','CHALLENGE','CHEMICAL',
+  'CHILDREN','CITIZENS','CIVILIAN','CLASSIFY','COLLECTED','COMBINE','COMFORT',
+  'COMMAND','COMMERCE','COMPARED','COMPLETE','COMPOSED','COMPUTER','CONCLUDE',
+  'CONCRETE','CONFLICT','CONFUSED','CONGRESS','CONSIDER','CONSTANT','CONSUMER',
+  'CONTINUE','CONTRACT','CONTRARY','CONTRAST','CONTRIBU','CONVERTED','COPYRIGHT',
+  'ACCURATE','ACHIEVED','ACQUIRED','ACTIVATE','ACTIVITY','ACTUALLY','ADDITION',
+  'ADEQUATE','ADJUSTED','ADVANCED','ADVISORY','AFFECTED','AIRCRAFT','ALLIANCE',
+  'ALTHOUGH','ANALYSIS','ANNOUNCE','ANYTHING','APPARENT','APPROACH','APPROVED',
+  'ARGUMENT','ASSEMBLY','ASSIGNED','ASSISTED','ATHLETIC','ATTITUDE','ATTRIBUT',
+  'AUDIENCE','AUTHORITY','AUTOMATE','AVAILABLE','BASEBALL','BEAUTIFUL','BECOMING',
+  'BEHAVIOR','BUILDING','BUSINESS','CALCULATE','CAMPAIGN','CAPACITY','CATEGORY',
+  'CELEBRATE','CHALLENGE','CHEMICAL','CHILDREN','CITIZENS','CIVILIAN','CLASSIFY',
+  'COLLECTED','COMBINE','COMFORT','COMMAND','COMMERCE','COMPARED','COMPLETE',
+  'COMPOSED','COMPUTER','CONCLUDE','CONCRETE','CONFLICT','CONFUSED','CONGRESS',
+  'CONSIDER','CONSTANT','CONSUMER','CONTINUE','CONTRACT','CONTRARY','CONTRAST',
+  'CONVERTED','COPYRIGHT'
+  ];
+
+  Future<void> seedWords() async {
+    final words = _defaultWords
+        .where((w) => w.length >= 4 && w.length <= 8)
+        .map((w) => WordModel.fromString(w))
+        .toList();
+    await _storage.seedDefaultWords(words);
+  }
+
+  /// Select a word based on current difficulty and avoid repetition.
+  /// difficulty = base + (streak / factor)
+  WordModel? selectWord({
+    required int streak,
+    required String mode,
+    List<WordModel>? customPool,
+    int? forcedLength,
+  }) {
+    final double difficultyScore = (1.0 + (streak / 5.0)).clamp(1.0, 3.0);
+    final int targetDifficulty = difficultyScore.round();
+
+    List<WordModel> pool = customPool ?? _storage.getDefaultWords();
+    final usedWords = _storage.getUsedWords();
+
+    // Filter by length if forced
+    if (forcedLength != null) {
+      pool = pool.where((w) => w.length == forcedLength).toList();
+    }
+
+    // Remove recently used
+    List<WordModel> available = pool
+        .where((w) => !usedWords.contains(w.text))
+        .toList();
+
+    // If pool is exhausted, reset and use full pool
+    if (available.isEmpty) {
+      available = pool;
+    }
+
+    // Sort by how close difficulty is to target
+    available.sort((a, b) =>
+        (a.difficulty - targetDifficulty).abs()
+            .compareTo((b.difficulty - targetDifficulty).abs()));
+
+    // Take top candidates matching difficulty (±1)
+    final candidates = available
+        .where((w) => (w.difficulty - targetDifficulty).abs() <= 1)
+        .toList();
+
+    final finalPool = candidates.isNotEmpty ? candidates : available;
+
+    if (finalPool.isEmpty) return null;
+
+    return finalPool[_random.nextInt(finalPool.length)];
+  }
+
+  /// Calculate max attempts based on word length
+  int calculateAttempts(int wordLength, {int streakModifier = 0}) {
+    // Base: wordLength + 1, minimum 5, max 8, harder with high streaks
+    int base = wordLength + 1;
+    int modifier = (streakModifier / 10).floor();
+    return (base - modifier).clamp(4, 8);
+  }
+
+  List<WordModel> getCustomWords() => _storage.getCustomWords();
+
+  Future<void> addCustomWord(String word) async {
+    await _storage.addCustomWord(WordModel.fromString(word, isCustom: true));
+  }
+
+  Future<void> deleteCustomWord(int index) async {
+    await _storage.deleteCustomWord(index);
+  }
+
+  Future<void> clearCustomWords() async {
+    await _storage.clearCustomWords();
+  }
+}

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary": "#bcc7de",
+                    "surface-container": "#171f33",
+                    "primary": "#a4c9ff",
+                    "on-background": "#dae2fd",
+                    "surface": "#0b1326",
+                    "tertiary-fixed-dim": "#fabd34",
+                    "tertiary": "#fabd34",
+                    "inverse-primary": "#0060ac",
+                    "on-primary-container": "#003a6b",
+                    "tertiary-fixed": "#ffdea4",
+                    "on-secondary-container": "#aeb9d0",
+                    "error": "#ffb4ab",
+                    "outline-variant": "#414751",
+                    "outline": "#8b919d",
+                    "secondary-fixed-dim": "#bcc7de",
+                    "on-error-container": "#ffdad6",
+                    "surface-container-high": "#222a3d",
+                    "primary-container": "#60a5fa",
+                    "on-secondary-fixed": "#111c2d",
+                    "on-primary": "#00315d",
+                    "surface-container-highest": "#2d3449",
+                    "secondary-fixed": "#d8e3fb",
+                    "surface-container-low": "#131b2e",
+                    "surface-tint": "#a4c9ff",
+                    "on-secondary": "#263143",
+                    "on-primary-fixed-variant": "#004883",
+                    "on-tertiary-container": "#4b3500",
+                    "inverse-surface": "#dae2fd",
+                    "on-primary-fixed": "#001c39",
+                    "surface-variant": "#2d3449",
+                    "on-surface": "#dae2fd",
+                    "on-tertiary": "#412d00",
+                    "on-surface-variant": "#c1c7d3",
+                    "on-error": "#690005",
+                    "secondary-container": "#3e495d",
+                    "surface-dim": "#0b1326",
+                    "background": "#0b1326",
+                    "tertiary-container": "#d19900",
+                    "surface-bright": "#31394d",
+                    "primary-fixed-dim": "#a4c9ff",
+                    "on-tertiary-fixed": "#261900",
+                    "primary-fixed": "#d4e3ff",
+                    "on-secondary-fixed-variant": "#3c475a",
+                    "inverse-on-surface": "#283044",
+                    "error-container": "#93000a",
+                    "surface-container-lowest": "#060e20",
+                    "on-tertiary-fixed-variant": "#5d4200"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Plus Jakarta Sans"],
+                    "body": ["Plus Jakarta Sans"],
+                    "label": ["Plus Jakarta Sans"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(45, 52, 73, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center px-6 h-16 w-full fixed top-0 z-50 bg-[#0b1326] text-[#a4c9ff]">
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined p-2 hover:bg-[#171f33] transition-colors rounded-full active:scale-95 duration-200" data-icon="menu">menu</button>
+<h1 class="text-xl font-black text-[#a4c9ff] tracking-tighter font-['Plus_Jakarta_Sans']">Curator</h1>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#171f33] hover:bg-[#222a3d] transition-all active:scale-95 duration-200">
+<span class="text-sm font-bold tracking-tight font-['Plus_Jakarta_Sans']">12 🔥</span>
+</button>
+</div>
+</header>
+<main class="flex-1 w-full max-w-5xl mx-auto px-6 pt-24 pb-32">
+<!-- Hero Branding Section -->
+<div class="mb-12 mt-4">
+<p class="text-primary font-bold uppercase tracking-widest text-[10px] mb-2">Welcome Back</p>
+<h2 class="text-4xl md:text-5xl font-extrabold tracking-tighter mb-4">Choose your <br/><span class="text-primary-container">experience</span></h2>
+<div class="h-1 w-12 bg-primary rounded-full"></div>
+</div>
+<!-- Mode Selection Grid (Bento Style) -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Classic Mode Card (Main Focus) -->
+<div class="md:col-span-8 group relative overflow-hidden bg-surface-container rounded-lg p-8 h-80 flex flex-col justify-between transition-all hover:bg-surface-container-high cursor-pointer shadow-lg">
+<div class="absolute top-0 right-0 p-8">
+<div class="w-16 h-16 bg-primary-container/20 rounded-2xl flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-4xl" data-icon="grid_view">grid_view</span>
+</div>
+</div>
+<div class="relative z-10">
+<span class="px-3 py-1 bg-primary/10 text-primary text-[10px] font-bold rounded-full uppercase tracking-wider mb-4 inline-block">Daily Challenge</span>
+<h3 class="text-3xl font-bold tracking-tight mb-2">Classic Mode</h3>
+<p class="text-secondary max-w-xs text-sm leading-relaxed">The original curator experience. Solve the master puzzle with precise word choice and elegance.</p>
+</div>
+<div class="flex items-center gap-4">
+<button class="bg-gradient-to-br from-primary to-primary-container text-on-primary font-bold px-8 py-3 rounded-full hover:shadow-xl hover:shadow-primary/20 transition-all active:scale-95">Play Now</button>
+<span class="text-xs font-medium text-secondary/60">3.2k currently active</span>
+</div>
+<!-- Abstract Glow -->
+<div class="absolute -bottom-10 -right-10 w-48 h-48 bg-primary/10 rounded-full blur-3xl group-hover:bg-primary/20 transition-all"></div>
+</div>
+<!-- Stats Mini Card -->
+<div class="md:col-span-4 bg-surface-container-lowest rounded-lg p-6 flex flex-col justify-center border border-outline-variant/15">
+<div class="flex items-center justify-between mb-6">
+<span class="material-symbols-outlined text-tertiary" data-icon="leaderboard">leaderboard</span>
+<span class="text-[10px] font-bold uppercase text-outline">Your Rank</span>
+</div>
+<div class="text-4xl font-black mb-1">#422</div>
+<div class="text-secondary text-xs">Top 5% of all Curators globally</div>
+<div class="mt-6 space-y-2">
+<div class="h-1.5 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full w-[75%] bg-tertiary rounded-full"></div>
+</div>
+<div class="flex justify-between text-[10px] font-bold text-outline uppercase">
+<span>XP Progress</span>
+<span>Level 14</span>
+</div>
+</div>
+</div>
+<!-- Custom Mode Card -->
+<div class="md:col-span-6 group bg-surface-container rounded-lg p-8 h-64 flex flex-col justify-between transition-all hover:bg-surface-container-high cursor-pointer border border-outline-variant/10">
+<div>
+<div class="w-12 h-12 bg-secondary-container/30 rounded-xl flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-secondary" data-icon="settings">settings</span>
+</div>
+<h3 class="text-2xl font-bold tracking-tight mb-2">Custom Mode</h3>
+<p class="text-secondary text-sm leading-relaxed">Define your rules. Play with friends using unique seeds and categories.</p>
+</div>
+<div class="flex items-center text-primary text-sm font-bold gap-2">
+                    Configure <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+<!-- Rage Mode Card -->
+<div class="md:col-span-6 group bg-surface-container-high rounded-lg p-8 h-64 flex flex-col justify-between transition-all hover:shadow-[0_20px_40px_-5px_rgba(250,189,52,0.15)] cursor-pointer relative overflow-hidden">
+<div class="relative z-10">
+<div class="w-12 h-12 bg-tertiary/20 rounded-xl flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-tertiary" data-icon="bolt" data-weight="fill" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</div>
+<h3 class="text-2xl font-bold tracking-tight mb-2">Rage Mode</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed">A blitz against the clock. One mistake and the streak resets. Only for the bold.</p>
+</div>
+<div class="flex items-center text-tertiary text-sm font-bold gap-2 relative z-10">
+                    Enter the Storm <span class="material-symbols-outlined text-sm" data-icon="local_fire_department">local_fire_department</span>
+</div>
+<!-- Heat Gradient Decor -->
+<div class="absolute top-0 right-0 w-full h-full bg-gradient-to-tr from-transparent via-transparent to-tertiary/5"></div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-8 pb-8 pt-4 bg-[#0b1326]/80 backdrop-blur-xl shadow-[0_-20px_40px_-5px_rgba(255,255,255,0.06)] rounded-t-3xl">
+<button class="flex items-center justify-center bg-[#171f33] text-[#a4c9ff] rounded-full p-3 active:scale-90 duration-150">
+<span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
+</button>
+<button class="flex items-center justify-center text-[#2d3449] p-3 hover:text-[#a4c9ff] transition-all active:scale-90 duration-150">
+<span class="material-symbols-outlined" data-icon="leaderboard">leaderboard</span>
+</button>
+<button class="flex items-center justify-center text-[#2d3449] p-3 hover:text-[#a4c9ff] transition-all active:scale-90 duration-150">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<button class="flex items-center justify-center text-[#2d3449] p-3 hover:text-[#a4c9ff] transition-all active:scale-90 duration-150">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+</button>
+</nav>
+</body></html>

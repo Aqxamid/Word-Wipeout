@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #0b1326;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(45, 52, 73, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "secondary": "#bcc7de",
+                      "surface-container": "#171f33",
+                      "primary": "#a4c9ff",
+                      "on-background": "#dae2fd",
+                      "surface": "#0b1326",
+                      "tertiary-fixed-dim": "#fabd34",
+                      "tertiary": "#fabd34",
+                      "inverse-primary": "#0060ac",
+                      "on-primary-container": "#003a6b",
+                      "tertiary-fixed": "#ffdea4",
+                      "on-secondary-container": "#aeb9d0",
+                      "error": "#ffb4ab",
+                      "outline-variant": "#414751",
+                      "outline": "#8b919d",
+                      "secondary-fixed-dim": "#bcc7de",
+                      "on-error-container": "#ffdad6",
+                      "surface-container-high": "#222a3d",
+                      "primary-container": "#60a5fa",
+                      "on-secondary-fixed": "#111c2d",
+                      "on-primary": "#00315d",
+                      "surface-container-highest": "#2d3449",
+                      "secondary-fixed": "#d8e3fb",
+                      "surface-container-low": "#131b2e",
+                      "surface-tint": "#a4c9ff",
+                      "on-secondary": "#263143",
+                      "on-primary-fixed-variant": "#004883",
+                      "on-tertiary-container": "#4b3500",
+                      "inverse-surface": "#dae2fd",
+                      "on-surface": "#dae2fd",
+                      "on-tertiary": "#412d00",
+                      "on-surface-variant": "#c1c7d3",
+                      "on-error": "#690005",
+                      "secondary-container": "#3e495d",
+                      "surface-dim": "#0b1326",
+                      "background": "#0b1326",
+                      "tertiary-container": "#d19900",
+                      "surface-bright": "#31394d",
+                      "primary-fixed-dim": "#a4c9ff",
+                      "on-tertiary-fixed": "#261900",
+                      "primary-fixed": "#d4e3ff",
+                      "on-secondary-fixed-variant": "#3c475a",
+                      "inverse-on-surface": "#283044",
+                      "error-container": "#93000a",
+                      "surface-container-lowest": "#060e20",
+                      "on-tertiary-fixed-variant": "#5d4200"
+              },
+              "borderRadius": {
+                      "DEFAULT": "1rem",
+                      "lg": "2rem",
+                      "xl": "3rem",
+                      "full": "9999px"
+              }
+            },
+          },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center px-6 h-16 w-full fixed top-0 z-50 bg-[#0b1326]">
+<div class="flex items-center gap-4">
+<button class="hover:bg-[#171f33] transition-colors p-2 rounded-full active:scale-95 duration-200">
+<span class="material-symbols-outlined text-[#a4c9ff]">arrow_back</span>
+</button>
+<h1 class="font-['Plus_Jakarta_Sans'] tracking-tight font-bold text-lg text-[#a4c9ff]">Your Stats</h1>
+</div>
+<div class="flex items-center gap-2 px-3 py-1 bg-surface-container rounded-full">
+<span class="text-xl font-black text-[#a4c9ff] tracking-tighter">12 🔥</span>
+</div>
+</header>
+<main class="pt-24 px-6 max-w-2xl mx-auto space-y-8">
+<!-- Hero Stats Bento Grid -->
+<section class="grid grid-cols-2 gap-4">
+<!-- Total Played -->
+<div class="bg-surface-container p-6 rounded-lg relative overflow-hidden group">
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-primary/5 rounded-full blur-3xl group-hover:bg-primary/10 transition-colors"></div>
+<p class="text-on-surface-variant text-xs font-semibold uppercase tracking-widest mb-1">Played</p>
+<h2 class="text-4xl font-extrabold tracking-tighter text-on-surface">342</h2>
+</div>
+<!-- Win Rate -->
+<div class="bg-surface-container p-6 rounded-lg border-l-4 border-tertiary">
+<p class="text-on-surface-variant text-xs font-semibold uppercase tracking-widest mb-1">Win Rate</p>
+<div class="flex items-baseline gap-1">
+<h2 class="text-4xl font-extrabold tracking-tighter text-on-surface">94</h2>
+<span class="text-lg font-bold text-tertiary">%</span>
+</div>
+</div>
+</section>
+<!-- Streak Visualization Section -->
+<section class="bg-surface-container-high rounded-lg p-6 relative">
+<h3 class="text-on-surface-variant text-[10px] uppercase tracking-[0.2em] font-bold mb-6">Streak History</h3>
+<div class="flex justify-between items-end gap-4 h-32 px-2">
+<div class="flex flex-col items-center gap-2 w-full">
+<p class="text-xs font-bold text-on-surface">14</p>
+<div class="w-full bg-surface-container-highest rounded-t-lg transition-all hover:bg-primary-container" style="height: 100%;"></div>
+<p class="text-[10px] text-on-surface-variant font-medium">Current</p>
+</div>
+<div class="flex flex-col items-center gap-2 w-full">
+<p class="text-xs font-bold text-on-surface">28</p>
+<div class="w-full bg-primary-container rounded-t-lg shadow-[0_0_20px_rgba(96,165,250,0.3)]" style="height: 100%; min-height: 80px;"></div>
+<p class="text-[10px] text-on-surface-variant font-medium">Best</p>
+</div>
+<div class="flex flex-col items-center gap-2 w-full">
+<p class="text-xs font-bold text-on-surface">4.2</p>
+<div class="w-full bg-surface-container-highest rounded-t-lg transition-all hover:bg-primary-container" style="height: 40%;"></div>
+<p class="text-[10px] text-on-surface-variant font-medium">Avg</p>
+</div>
+</div>
+</section>
+<!-- Guess Distribution -->
+<section class="bg-surface-container p-8 rounded-lg">
+<div class="flex justify-between items-center mb-8">
+<h3 class="text-lg font-bold tracking-tight">Guess Distribution</h3>
+<span class="material-symbols-outlined text-outline">bar_chart</span>
+</div>
+<div class="space-y-4">
+<!-- Distribution Rows -->
+<div class="flex items-center gap-4">
+<span class="text-xs font-bold text-on-surface-variant w-4">1</span>
+<div class="flex-1 h-8 bg-surface-container-lowest rounded-full overflow-hidden">
+<div class="h-full bg-surface-container-highest w-[8%] flex items-center justify-end px-3">
+<span class="text-[10px] font-bold">12</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="text-xs font-bold text-on-surface-variant w-4">2</span>
+<div class="flex-1 h-8 bg-surface-container-lowest rounded-full overflow-hidden">
+<div class="h-full bg-surface-container-highest w-[22%] flex items-center justify-end px-3">
+<span class="text-[10px] font-bold">48</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="text-xs font-bold text-on-surface-variant w-4">3</span>
+<div class="flex-1 h-8 bg-surface-container-lowest rounded-full overflow-hidden">
+<div class="h-full bg-primary-container w-[45%] flex items-center justify-end px-3 shadow-[0_0_15px_rgba(96,165,250,0.2)]">
+<span class="text-[10px] font-bold text-on-primary-container">104</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="text-xs font-bold text-on-surface-variant w-4">4</span>
+<div class="flex-1 h-8 bg-surface-container-lowest rounded-full overflow-hidden">
+<div class="h-full bg-surface-container-highest w-[30%] flex items-center justify-end px-3">
+<span class="text-[10px] font-bold">72</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="text-xs font-bold text-on-surface-variant w-4">5</span>
+<div class="flex-1 h-8 bg-surface-container-lowest rounded-full overflow-hidden">
+<div class="h-full bg-surface-container-highest w-[15%] flex items-center justify-end px-3">
+<span class="text-[10px] font-bold">34</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="text-xs font-bold text-on-surface-variant w-4">6</span>
+<div class="flex-1 h-8 bg-surface-container-lowest rounded-full overflow-hidden">
+<div class="h-full bg-surface-container-highest w-[5%] flex items-center justify-end px-3">
+<span class="text-[10px] font-bold">11</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Achievement Preview Card -->
+<div class="glass-panel p-6 rounded-lg relative overflow-hidden border border-outline-variant/20">
+<div class="flex gap-4 items-center">
+<div class="w-12 h-12 rounded-full bg-tertiary/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">military_tech</span>
+</div>
+<div>
+<h4 class="font-bold text-on-surface">Grand Curator</h4>
+<p class="text-xs text-on-surface-variant">Solve 500 puzzles to unlock</p>
+</div>
+<div class="ml-auto">
+<span class="text-xs font-bold text-primary">68%</span>
+</div>
+</div>
+<div class="mt-4 w-full h-1 bg-surface-container-lowest rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[68%] rounded-full"></div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-8 pb-8 pt-4 bg-[#0b1326]/80 backdrop-blur-xl shadow-[0_-20px_40px_-5px_rgba(255,255,255,0.06)] rounded-t-3xl">
+<a class="flex items-center justify-center text-[#2d3449] p-3 hover:text-[#a4c9ff] transition-all active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined">grid_view</span>
+</a>
+<a class="flex items-center justify-center bg-[#171f33] text-[#a4c9ff] rounded-full p-3 active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">leaderboard</span>
+</a>
+<a class="flex items-center justify-center text-[#2d3449] p-3 hover:text-[#a4c9ff] transition-all active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined">settings</span>
+</a>
+<a class="flex items-center justify-center text-[#2d3449] p-3 hover:text-[#a4c9ff] transition-all active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined">person</span>
+</a>
+</nav>
+</body></html>
